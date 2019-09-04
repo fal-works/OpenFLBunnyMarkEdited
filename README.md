@@ -12,7 +12,33 @@
 `lime test android -Duse_tilemap -Dbunnies=3000`
 
 
-# Change
+# Problem
+
+When running with e.g. `-Dbunnies=3000`,
+
+1. The program starts with 3000 bunnies and runs smoothly with 61 FPS.
+2. After the first touch, a new `Tilemap` will be used with 6000 bunnies. The FPS is ca. 26, which is (maybe) fine.
+3. After the second touch, another new `Tilemap` will be used with 3000 bunnies. This is expected to run smoothly again, but the actual FPS fluctuates between ca. 35-50.
+
+
+# Tested environments
+
+[1]
+- lime 7.5.0
+- openfl 8.9.1
+- Android API 26 (rev. 2)
+- Android NDK r15c
+- Android build-tools 29.0.2
+- Java JDK 8u221
+
+[2]
+- lime 7.6.0 (fix https://github.com/openfl/lime/issues/1346 manually)
+- openfl 8.9.2
+- Android API 29 (rev. 3)
+- Other: same as [1]
+
+
+# What is changed from the original BunnyMark
 
 Before
 ```haxe
