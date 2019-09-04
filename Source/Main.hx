@@ -196,11 +196,14 @@ class Main extends Sprite
 
 	private function stage_onMouseDown(event:MouseEvent):Void
 	{
+		var numBunnies = #if bunnies Std.parseInt(haxe.macro.Compiler.getDefine("bunnies")) #else 100 #end;
+		var numBunnies2 = #if bunnies2 Std.parseInt(haxe.macro.Compiler.getDefine("bunnies2")) #else numBunnies * 2 #end;
+
 		switch(phase) {
 			case 0:
-				useNewTilemap(6000);
+				useNewTilemap(numBunnies2);
 			case 1:
-				useNewTilemap(3000);				
+				useNewTilemap(numBunnies);
 			default: 
 				useNewTilemap(Std.int(Math.random() * 7) * 1000);
 		}
