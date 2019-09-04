@@ -186,10 +186,39 @@ class Main extends Sprite
 		}
 	}
 
+	#if !use_tilemap
 	private function stage_onMouseDown(event:MouseEvent):Void
 	{
 		addingBunnies = true;
 	}
+	#else
+	var phase:Int = 0;
+
+	private function stage_onMouseDown(event:MouseEvent):Void
+	{
+		switch(phase) {
+			case 0:
+				useNewTilemap(6000);
+			case 1:
+				useNewTilemap(3000);				
+			default: 
+				useNewTilemap(Std.int(Math.random() * 7) * 1000);
+		}
+
+		++phase;
+	}
+
+	private function useNewTilemap(numBunnies:Int) {
+		removeChild(tilemap);
+		tilemap = new Tilemap(stage.stageWidth, stage.stageHeight, tileset);
+		bunnies = [];
+
+		for (i in 0...numBunnies)
+			addBunny();
+
+		addChild(tilemap);
+	}
+	#end
 
 	private function stage_onMouseUp(event:MouseEvent):Void
 	{
