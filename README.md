@@ -14,11 +14,16 @@
 
 # Problem
 
+Currently not able to reproduce
+
+<del>
 When running with e.g. `-Dbunnies=3000`,
 
 1. The program starts with 3000 bunnies and runs smoothly with 61 FPS.
 2. After the first touch, a new `Tilemap` will be used with 6000 bunnies. The FPS is ca. 26, which is (maybe) fine.
 3. After the second touch, another new `Tilemap` will be used with 3000 bunnies. This is expected to run smoothly again, but the actual FPS fluctuates between ca. 35-50.
+
+</del>
 
 
 # Tested environments
@@ -67,23 +72,25 @@ After
 	private function stage_onMouseDown(event:MouseEvent):Void
 	{
 		var numBunnies = #if bunnies Std.parseInt(haxe.macro.Compiler.getDefine("bunnies")) #else 100 #end;
-		var numBunnies2 = #if bunnies2 Std.parseInt(haxe.macro.Compiler.getDefine("bunnies2")) #else numBunnies * 2 #end;
+		var numBunnies2 = #if bunnies2 Std.parseInt(haxe.macro.Compiler.getDefine("bunnies2")) #else numBunnies * 3 #end;
 
 		switch(phase) {
 			case 0:
 				useNewTilemap(numBunnies2);
+				++phase;
 			case 1:
 				useNewTilemap(numBunnies);
+				phase = 0;
 			default: 
-				useNewTilemap(Std.int(Math.random() * 7) * 1000);
 		}
-
-		++phase;
 	}
 
 	private function useNewTilemap(numBunnies:Int) {
 		removeChild(tilemap);
 		tilemap = new Tilemap(stage.stageWidth, stage.stageHeight, tileset);
+		tilemap.tileAlphaEnabled = false;
+		tilemap.tileBlendModeEnabled = false;
+		tilemap.tileColorTransformEnabled = false;
 		bunnies = [];
 
 		for (i in 0...numBunnies)

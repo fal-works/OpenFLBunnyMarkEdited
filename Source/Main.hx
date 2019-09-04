@@ -202,18 +202,20 @@ class Main extends Sprite
 		switch(phase) {
 			case 0:
 				useNewTilemap(numBunnies2);
+				++phase;
 			case 1:
 				useNewTilemap(numBunnies);
+				phase = 0;
 			default: 
-				useNewTilemap(Std.int(Math.random() * 7) * 1000);
 		}
-
-		++phase;
 	}
 
 	private function useNewTilemap(numBunnies:Int) {
 		removeChild(tilemap);
 		tilemap = new Tilemap(stage.stageWidth, stage.stageHeight, tileset);
+		tilemap.tileAlphaEnabled = false;
+		tilemap.tileBlendModeEnabled = false;
+		tilemap.tileColorTransformEnabled = false;
 		bunnies = [];
 
 		for (i in 0...numBunnies)
