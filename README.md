@@ -38,6 +38,10 @@ When running with e.g. `-Dbunnies=3000`,
 - Android API 29 (rev. 3)
 - Other: same as [1]
 
+Device
+- CPU: MSM8917 (1.4GHz - Quad)
+- RAM 2GB
+- Android OS 8.1.0
 
 # What is changed from the original BunnyMark
 
