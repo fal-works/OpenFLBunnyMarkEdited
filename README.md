@@ -24,6 +24,7 @@ When running with e.g. `-Dbunnies=3000`,
 # Tested environments
 
 [1]
+- Haxe 3.4.7
 - lime 7.5.0
 - openfl 8.9.1
 - hxcpp 4.0.8
