@@ -26,6 +26,7 @@ When running with e.g. `-Dbunnies=3000`,
 [1]
 - lime 7.5.0
 - openfl 8.9.1
+- hxcpp 4.0.8
 - Android API 26 (rev. 2)
 - Android NDK r15c
 - Android build-tools 29.0.2
